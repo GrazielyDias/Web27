@@ -49,7 +49,7 @@
                             </a>
                         </td>
                         <td><img src="imagensPac/<?php echo $row->fotoPac; ?>"
-                                alt="Foto do Paciente <?php echo $row->nomePac; ?>" class="imgRed">
+                                alt="Foto do Paciente <?php echo $row->nomePac; ?>" class="imgred">
                         </td>
                         <td>
                             <?php echo $row->nomePac; ?>
