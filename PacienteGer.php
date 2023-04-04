@@ -49,6 +49,11 @@
                     require_once "./Classes/{$class}.class.php";
                 }
             );
+            $cac = new Paciente();
+            if (filter_has_var (INPUT_GET,'id')){
+                $paciente = new Paciente();
+                $id = filter_input(INPUT_GET, 'id');
+                            }
 
 
             if (filter_has_var(INPUT_POST, 'btnGravar')) {

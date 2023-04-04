@@ -9,4 +9,8 @@ nome: Crud.class.php
     $selctSql = "SELECT * FROM {$this->tabela}";
     return Conexao::query($selctSql);
  }
+ public function buscar($campo, $id){
+   $selctSql = "SELECT * FROM {$this->tabela} WHERE $campo=$id";
+   return Conexao::query($selctSql);
+ }
  }
