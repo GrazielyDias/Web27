@@ -61,14 +61,14 @@
 
 
                 $paciente = new Paciente();
-                $paciente->setNomePac(filter_input(INPUT_POST, 'txNome'));
-                $paciente->setEnderecoPac(filter_input(INPUT_POST, 'txEndereco'));
-                $paciente->setBairroPac(filter_input(INPUT_POST, 'txBairro'));
-                $paciente->setCidadePac(filter_input(INPUT_POST, 'txCidade'));
-                $paciente->setEstadoPac(filter_input(INPUT_POST, 'txEstado'));
-                $paciente->setCepPac(filter_input(INPUT_POST, 'txCep'));
-                $paciente->setEmailPac(filter_input(INPUT_POST, 'txEmail'));
-                $paciente->setEmailPac(filter_input(INPUT_POST, 'txEmail'));
+                $paciente->setNomePac(filter_input(INPUT_POST, 'txtNome'));
+                $paciente->setEnderecoPac(filter_input(INPUT_POST, 'txtEndereco'));
+                $paciente->setBairroPac(filter_input(INPUT_POST, 'txtBairro'));
+                $paciente->setCidadePac(filter_input(INPUT_POST, 'txtCidade'));
+                $paciente->setEstadoPac(filter_input(INPUT_POST, 'txtEstado'));
+                $paciente->setCepPac(filter_input(INPUT_POST, 'txtCep'));
+                $paciente->setEmailPac(filter_input(INPUT_POST, 'txtEmail'));
+                $paciente->setNascimentoPac(filter_input(INPUT_POST, 'txtNascimento'));
                 $paciente->setFotoPac($nomeArq);
                 $paciente->inserir();
             }

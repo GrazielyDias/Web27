@@ -232,16 +232,11 @@ class Paciente extends Crud
         $sqllnserir = "INSERT INTO $this->tabela (nomePac, enderecoPac, bairroPac,cidadePac, estadoPac, cepPac,  nascimentoPac, emailPac, celularPac, fotoPac)
         VALUES ('$nome', '$endereco', '$bairro', '$cidade', '$estado','$cep', '$nascimento', '$email', '$celular', '$foto')";
         if (Conexao::query($sqllnserir)) {
-            header('location: paciente.php');
+            header('location: Pacientes.php');
         }
 
 
-        $sqlAtualizar = "UPDATE paciente (nomePac, enderecoPac, bairroPac,cidadePac, estadoPac, cepPac,  nascimentoPac, emailPac, celularPac, fotoPac)
-            VALUES
-            ('$nome', '$endereco', '$bairro', '$cidade', '$estado','$cep', '$nascimento', '$email', '$celular', '$foto')";
-        if (Cenexao::query($sqlAtualizar)) {
-            header('location: paciente.php');
-        }
+
     }
 
     /**
@@ -252,6 +247,22 @@ class Paciente extends Crud
      */
     public function atualizar($campo, $id)
     {
+        $nome = $this->getNomePac();
+        $endereco = $this->getEnderecoPac();
+        $bairro = $this->getBairroPac();
+        $cidade = $this->getCidadePac();
+        $estado = $this->getEstadoPac();
+        $cep = $this->getCepPac();
+        $nascimento = $this->getNascimentoPac();
+        $email = $this->getEmailPac();
+        $celular = $this->getCelularPac();
+        $foto = $this->getFotoPac();
+        $sqlAtualizar = "UPDATE paciente (nomePac, enderecoPac, bairroPac,cidadePac, estadoPac, cepPac,  nascimentoPac, emailPac, celularPac, fotoPac)
+            VALUES
+            ('$nome', '$endereco', '$bairro', '$cidade', '$estado','$cep', '$nascimento', '$email', '$celular', '$foto')";
+        if (Cenexao::query($sqlAtualizar)) {
+            header('location: Pacientes.php');
+        }
     }
 
 }
