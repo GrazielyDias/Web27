@@ -47,8 +47,7 @@ class Especialidade extends Crud
     {
         $nome = $this->getNomeEsp();
        
-        $sqllnserir = "INSERT INTO $this->tabela (NomeEsp)
-        VALUES ('$nome')";
+        $sqllnserir = "INSERT INTO $this->tabela (NomeEsp) VALUES ('$nome')";
         if (Conexao::query($sqllnserir)) {
             header('location: Especialidade.php');
         }

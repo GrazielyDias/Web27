@@ -11,10 +11,10 @@
 </head>
 
 <body>
-    <header>
+<header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">Clinica Do IFRO</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,16 +22,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="#">Especialidade</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" href="#">Paciente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link" href="#">Médico</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
+                            <a class="nav-link disabled">Consultas</a>
                         </li>
                     </ul>
                 </div>
@@ -52,16 +52,12 @@
 
 
             if (filter_has_var(INPUT_POST, 'btnGravar')) {
-                if (isset($_FILES['filFoto'])) {
-                    $ext = strtolower(substr($_FILES['filFoto']['name'], -4));
-                    $nomeArq = md5(date("Y.m.d-H.i.s")) . $ext;
-                    $local = "imagensPac/";
-                    move_uploaded_file($_FILES['filFoto']['tmp_name'], $local . $nomeArq);
-                }
+                
 
 
-                $paciente = new Paciente();
-                $paciente->setNomeEsp(filter_input(INPUT_POST, 'txtNome'));
+                $especialidade = new Especialidade();
+                $especialidade->setNomeEsp(filter_input(INPUT_POST, 'txtNomeEsp'));
+                $especialidade->inserir();
             }
             ?>
 
@@ -69,9 +65,9 @@
                 htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 
                 <div class="col-12">
-                    <label for="txtNome" class="form-label">Especialidade</label>
-                    <input type="text" class="form-control" id="txtNome" placeholder="Digite especialidade..."
-                        name="txtNome">
+                    <label for="txtNomeEsp" class="form-label">Especialidade</label>
+                    <input type="text" class="form-control" id="txtNomeEsp" placeholder="Digite especialidade..."
+                        name="txtNomeEsp">
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary" name="btnGravar">Gravar</button>
