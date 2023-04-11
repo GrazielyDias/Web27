@@ -68,7 +68,7 @@ class Especialidade extends Crud
         $sqlAtualizar = "UPDATE paciente (nomeEsp)
             VALUES
             ('$nome')";
-        if (Cenexao::query($sqlAtualizar)) {
+        if (Conexao::query($sqlAtualizar)) {
             header('location: Especialidade.php');
         }
     }
