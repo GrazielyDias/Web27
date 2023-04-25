@@ -65,9 +65,8 @@ class Especialidade extends Crud
     public function atualizar($campo, $id)
     { 
         $nome = $this->getNomeEsp();
-        $sqlAtualizar = "UPDATE paciente (nomeEsp)
-            VALUES
-            ('$nome')";
+        $sqlAtualizar = "UPDATE $this->tabela SET nomeEsp ='$nome', where idEsp = '$id'";
+
         if (Conexao::query($sqlAtualizar)) {
             header('location: Especialidade.php');
         }
