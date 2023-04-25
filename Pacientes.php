@@ -73,7 +73,7 @@
                                     </span>
                                 </a>
                                 <a href="pacienteGer.php?idDel=" <?php echo $row->idPac ?>"
-                                class="btn btn-danger">
+                                class="btn btn-danger" >
 
                                     <span class="material-symbols-outlined">
                                         delete
