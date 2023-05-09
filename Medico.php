@@ -10,7 +10,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="css/layout.css">
-    <title>Buscar</title>
+    <title>Buscar Medico</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                             <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Paciente</a>
+                            <a class="nav-link active" aria-current="page" href="#">Medico</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Médico</a>
@@ -66,8 +66,8 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Ações</th>
-                        <th>Foto</th>
                         <th>Nome</th>
+                        <th>Especialidade</th>                        
                         <th>E-mail</th>
                         <th>Celular</th>
                     </tr>
@@ -77,13 +77,13 @@
                     spl_autoload_register(function ($class) {
                         require_once "./Classes/{$class}.class.php";
                     });
-                    $paciente = new Paciente();
+                    $Medico = new Medico();
                     if(filter_has_var(INPUT_POST, 'txtPesquisar')){
                         $parametro = filter_input(INPUT_POST, 'txtPesquisar');
-                        $where = "where (nomePac like '%$parametro%') or (emailPac like '%$parametro%')";
-                        $dadosBanco = $paciente->listar($where);
+                        $where = "where (nomeMed like '%$parametro%') or (emailMed like '%$parametro%')";
+                        $dadosBanco = $Medico->listar($where);
                     } else{
-                        $dadosBanco = $paciente->listar();
+                        $dadosBanco = $Medico->listar();
                     }
                 
                     
@@ -91,12 +91,12 @@
                         ?>
                         <tr>
                             <td>
-                                <a href="pacienteGer.php?id=<?php echo $row->idPac ?>" class="btn btn-secondary">
+                                <a href="MedicoGer.php?id=<?php echo $row->idMed ?>" class="btn btn-secondary">
                                     <span class="material-symbols-outlined">
                                         edit_square
                                     </span>
                                 </a>
-                                <a href="pacienteGer.php?idDel=" <?php echo $row->idPac ?>
+                                <a href="MedicoGer.php?idDel=" <?php echo $row->idMed ?>
                                 class="btn btn-danger" >
 
                                     <span class="material-symbols-outlined">
@@ -104,26 +104,29 @@
                                     </span>
                                 </a>
                             </td>
-                            <td><img src="imagensPac/<?php echo $row->fotoPac; ?>"
-                                    alt="Foto do Paciente <?php echo $row->nomePac; ?>" class="imgred">
+                            <td><img src="imagensMed/<?php echo $row->EspecialidadeMed; ?>"
+                                    alt="Especialidade do Medico <?php echo $row->nomeMed; ?>" class="imgred">
                             </td>
                             <td>
-                                <?php echo $row->nomePac; ?>
+                                <?php echo $row->nomeMed; ?>
                             </td>
                             <td>
-                                <?php echo $row->emailPac; ?>
+                                <?php echo $row->especialidadeMed; ?>
                             </td>
                             <td>
-                                <?php echo $row->celularPac; ?>
+                                <?php echo $row->emailMed; ?>
+                            </td>
+                            <td>
+                                <?php echo $row->celularMed; ?>
                             </td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
             <div class="col-12">
-                <a href="pacienteGer.php" class="btn btn-primary">
+                <a href="MedicoGer.php" class="btn btn-primary">
                     <span class="material-symbols-outlimed">
-                    </span> Novo Paciente
+                    </span> Novo Medico
                 </a>
             </div>
         </div>

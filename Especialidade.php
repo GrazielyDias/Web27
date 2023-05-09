@@ -49,6 +49,22 @@
 
 <main class="mt-3">
     <div class="container">
+    <div class="d-flex flex-row-reverse">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"METHOD="post" class="col-md-6">
+                   <div class="imput-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="txtPesquisar" placeholder="Pesquisar" name="txtPesquisar">
+                            <label for="pesquisar">Pesquisar</label>
+                        </div>
+                        <button class="btn btn-outline-secondary" type="submit" id="btnPesquisar" name="btnPesquisar">
+                            <span class="material-symbols-outlined">
+                                search
+                            </samp>
+                        </button>
+                   </div>
+                   </div> 
+                </form>
+            </div>
         <table class="table">
             <thead class="table-dark">
                 <tr>
@@ -64,7 +80,14 @@
                     require_once "./Classes/{$class}.class.php";
                 });
                 $especialidade = new Especialidade();
-                $dadosBanco = $especialidade->listar();
+                if(filter_has_var(INPUT_POST, 'txtPesquisar')){
+                    $parametro = filter_input(INPUT_POST, 'txtPesquisar');
+                    $where = "where (NomeEsp like '%$parametro%')";
+                    $dadosBanco = $especialidade->listar($where);
+                } else{
+                    $dadosBanco = $especialidade->listar();
+                }
+            
                 while ($row = $dadosBanco->fetch_object()) {
                     ?>
                     <tr>
@@ -90,7 +113,7 @@
             </tbody>
         </table>
         <div class="col-12">
-            <a href="especiaçidadeGer.php" class="btn btn-primary">
+            <a href="especialidadeGer.php" class="btn btn-primary">
                 <span class="material-symbols-outlimed">
                 </span> Nova Especialidade
             </a>
