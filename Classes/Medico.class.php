@@ -134,7 +134,7 @@ class Medico extends Crud
         $sqllnserir = "INSERT INTO $this->tabela (nomeMed,  especialidadeMed, crmMed, emailMed, celularMed)
         VALUES ('$nome', '$especialidade', '$crm', '$email', '$celular')";
         if (Conexao::query($sqllnserir)) {
-            header('location: Medicos.php');
+            header('location: Medico.php');
         }
 
 
@@ -158,7 +158,7 @@ class Medico extends Crud
         $sqlAtualizar = "UPDATE $this->tabela SET nomeMed ='$nome',  especialidadeMed = '$especialidade', crmMed = '$crm', emailMed = '$email', celularMed = '$celular',  where idMed = '$id'";
 
         if (Conexao::query($sqlAtualizar)) {
-            header('location: Medicos.php');
+            header('location: Medico.php');
         }
     }
 

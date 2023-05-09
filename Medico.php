@@ -104,17 +104,15 @@
                                     </span>
                                 </a>
                             </td>
-                            <td><img src="imagensMed/<?php echo $row->EspecialidadeMed; ?>"
-                                    alt="Especialidade do Medico <?php echo $row->nomeMed; ?>" class="imgred">
-                            </td>
+                            
                             <td>
                                 <?php echo $row->nomeMed; ?>
                             </td>
                             <td>
-                                <?php echo $row->especialidadeMed; ?>
+                                <?php echo $row->EspecialidadeMed; ?>
                             </td>
                             <td>
-                                <?php echo $row->emailMed; ?>
+                                <?php echo $row->EmailMed; ?>
                             </td>
                             <td>
                                 <?php echo $row->celularMed; ?>

@@ -67,7 +67,7 @@
 
 
                 $medico = new Medico();
-                $medico->setEspecialidadeMed(filter_input(INPUT_POST, 'txtEspecialidade'));
+                $medico->setEspecialidadeMed(filter_input(INPUT_POST, 'sltEspecialidade'));
                 $medico->setNomeMed(filter_input(INPUT_POST, 'txtNome'));
                 $medico->setCrmMed(filter_input(INPUT_POST, 'txtCrm'));
                 $medico->setcelularMed(filter_input(INPUT_POST, 'txtCelular'));
@@ -90,10 +90,27 @@
                         value="<?php echo isset($editMed->nomeMed) ? $editMed->nomeMed : Null; ?>">
                 </div>
                
-                <div class="col-12">
-                    <label for="txtEspecialidade" class="form-label">Especialidade</label>
-                    <input type="text" class="form-control" id="txtEspecialidade" placeholder="Digite especialidade..." name="txtEspecialidade"
-                        value="<?php echo isset($editMed->especialidadeMed) ? $editMed->especialidadeMed : Null; ?>">
+                <div class="col-md-6">
+                    <label for="sltEspecialidade" class="form-label">Especialidade</label>
+                    <select id="sltEspecialidade" class="form-select" name="sltEspecialidade">
+                        <?php $espSel = isset($medEdit->especialidadeMed)?
+                        $medEdit->especialidadeMed: null; ?>
+                        <option value="" selected hidden>Escolha...</option><?php
+
+                        $especialidade = new Especialidade;
+                        $dadosBanco = $especialidade->listar();
+                        while ($row = $dadosBanco->fetch_object()){
+                            ?>
+                            <option value="<?php echo $row->idEsp ?>"
+                            <?php if ($espSel == $row->idEsp){
+                                echo 'selected';
+                            }?>>
+                            <?php echo $row->NomeEsp?>
+                            </option>
+                          
+                        <?php }?>
+                    </select>
+
                 </div>
                
 
