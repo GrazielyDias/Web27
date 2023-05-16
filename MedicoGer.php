@@ -14,7 +14,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Clinica Do IFRO</a>
+                <a class="navbar-brand" href="#">Clinica IFRO</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,22 +22,26 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Especialidade</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">medico</a>
+                            <a class="nav-link active" aria-current="page" href="Pacientes.php">Pacientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Médico</a>
+                            <a class="nav-link active" aria-current="page" href="Medico.php">Médico</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled">Consultas</a>
+                            <a class="nav-link" href="Especialidade.php">Especialidade</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Consultas.php">Consultas</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+</body>
 
 
     <main>
@@ -56,6 +60,15 @@
                 $editMed = $medico->buscar('idMed', $id);
             }
 
+            if (filter_has_var(INPUT_GET, "idDel")) {
+                $id = filter_input(INPUT_GET, 'idDel');
+                $medico = new Medico();
+               If ($medico->deletar('idMed', $id)) {
+                header('location: Medico.php');
+               }
+
+            }
+
             if (filter_has_var(INPUT_POST, 'btnGravar')) {
 
                 $medico = new Medico();
@@ -70,6 +83,7 @@
                 $medico->setEspecialidadeMed(filter_input(INPUT_POST, 'sltEspecialidade'));
                 $medico->setNomeMed(filter_input(INPUT_POST, 'txtNome'));
                 $medico->setCrmMed(filter_input(INPUT_POST, 'txtCrm'));
+                $medico->setemailMed(filter_input(INPUT_POST, 'txtEmail'));
                 $medico->setcelularMed(filter_input(INPUT_POST, 'txtCelular'));
                 if (empty($id)){
                     $medico->inserir();

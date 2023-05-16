@@ -28,13 +28,16 @@
                             <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Paciente</a>
+                            <a class="nav-link active" aria-current="page" href="Pacientes.php">Pacientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Médico</a>
+                            <a class="nav-link active" aria-current="page" href="Medico.php">Médico</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Consultas</a>
+                            <a class="nav-link" href="Especialidade.php">Especialidade</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Consultas.php">Consultas</a>
                         </li>
                     </ul>
                 </div>
@@ -96,7 +99,7 @@
                                         edit_square
                                     </span>
                                 </a>
-                                <a href="pacienteGer.php?idDel=" <?php echo $row->idPac ?>
+                                <a href="pacienteGer.php?idDel=<?php echo $row->idPac ?>"
                                 class="btn btn-danger" >
 
                                     <span class="material-symbols-outlined">
@@ -123,6 +126,7 @@
             <div class="col-12">
                 <a href="pacienteGer.php" class="btn btn-primary">
                     <span class="material-symbols-outlimed">
+                        note_add
                     </span> Novo Paciente
                 </a>
             </div>

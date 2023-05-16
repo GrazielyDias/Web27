@@ -86,7 +86,7 @@ class Medico extends Crud
     /**
      * @return mixed
      */
-    public function getEmailMed()
+    public function getemailMed()
     {
         return $this->emailMed;
     }
@@ -95,7 +95,7 @@ class Medico extends Crud
      * @param mixed $emaiMed 
      * @return self
      */
-    public function setEmailMed($emaiMed): self
+    public function setemailMed($emaiMed): self
     {
         $this->emailMed = $emaiMed;
         return $this;
@@ -128,7 +128,7 @@ class Medico extends Crud
         $nome = $this->getNomeMed();
         $especialidade = $this->getespecialidadeMed();
         $crm = $this->getcrmMed();
-        $email = $this->getEmailMed();
+        $email = $this->getemailMed();
         $celular = $this->getCelularMed();
 
         $sqllnserir = "INSERT INTO $this->tabela (nomeMed,  especialidadeMed, crmMed, emailMed, celularMed)
@@ -155,7 +155,7 @@ class Medico extends Crud
         $email = $this->getEmailMed();
         $celular = $this->getCelularMed();
           
-        $sqlAtualizar = "UPDATE $this->tabela SET nomeMed ='$nome',  especialidadeMed = '$especialidade', crmMed = '$crm', emailMed = '$email', celularMed = '$celular',  where idMed = '$id'";
+        $sqlAtualizar = "UPDATE $this->tabela SET nomeMed ='$nome',  especialidadeMed = '$especialidade', crmMed = '$crm', emailMed = '$email', celularMed = '$celular'  where idMed = '$id'";
 
         if (Conexao::query($sqlAtualizar)) {
             header('location: Medico.php');

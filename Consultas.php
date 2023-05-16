@@ -1,3 +1,19 @@
+<?php
+spl_autoload_register(function($class){
+    require_once "./Classes/{$class}class.php";
+}); 
+if (filter_has_var(INPUT_POST, 'consultaCon')){
+$editPac = filter_input(INPUT_POST, 'consultaCon');
+} else {
+?>
+    <script>
+        alert("Nenhum consulta selecionado");
+        window.location.hert = "consultas.php"
+        </script>
+        <?php
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,10 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="css/layout.css">
-    <title>Buscar Medico</title>
+    <title>Consultas de </title>
 </head>
 
 <body>
@@ -28,7 +41,7 @@
                             <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Pacientes.php">Pacientes</a>
+                            <a class="nav-link active" aria-current="page" href="consultas.php">Paciente</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="Medico.php">Médico</a>
@@ -37,42 +50,26 @@
                             <a class="nav-link" href="Especialidade.php">Especialidade</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Consulta.php">Consultas</a>
+                            <a class="nav-link" href="Consultas.php">Consultas</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+</body>
 
-
-    <main class="mt-3">
-        <div class="container">
+    <header>
+        <main class="mt-3">
             <div class="d-flex flex-row-reverse">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"METHOD="post" class="col-md-6">
-                   <div class="imput-group mb-3">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="txtPesquisar" placeholder="Pesquisar" name="txtPesquisar">
-                            <label for="pesquisar">Pesquisar</label>
-                        </div>
-                        <button class="btn btn-outline-secondary" type="submit" id="btnPesquisar" name="btnPesquisar">
-                            <span class="material-symbols-outlined">
-                                search
-                            </samp>
-                        </button>
-                   </div>
-                   </div> 
-                </form>
+                <a href="ConsultaGer.php" class="btn btn-info"> Nova Consulta
             </div>
-            <table class="table">
+            <table class="table mt-3">
                 <thead class="table-dark">
                     <tr>
-                    <th scope="col">Açoẽs</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">CRM</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">Celular</th>
-
+                        <th scope="col">Medico</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Hora</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,63 +77,56 @@
                     spl_autoload_register(function ($class) {
                         require_once "./Classes/{$class}.class.php";
                     });
-                    $Medico = new Medico();
+                    $consulta = new Consulta();
                     if(filter_has_var(INPUT_POST, 'txtPesquisar')){
-                        $parametro = filter_input(INPUT_POST, 'txtPesquisar');
-                        $where = "where (nomeMed like '%$parametro%') or (emailMed like '%$parametro%')";
-                        $dadosBanco = $Medico->listar($where);
+                        $consulta = filter_input(INPUT_POST, 'txtPesquisar');
+                        $where = "where (nomePac like '%$parametro%') or (emailPac like '%$parametro%')";
+                        $dadosBanco = $consulta->listar($where);
                     } else{
-                        $dadosBanco = $Medico->listar();
+                        $dadosBanco = $consulta->listar();
                     }
                 
                     
                     while ($row = $dadosBanco->fetch_object()) {
                         ?>
                         <tr>
-                        <td class="align-middle" scope="row">
-                                <a href="MedicoGer.php?id=<?php echo $row->idMed ?>" class="btn btn-secondary">
+                            <td>
+                                <a href="consultaGer.php?id=<?php echo $row->idPac ?>" class="btn btn-secondary">
                                     <span class="material-symbols-outlined">
                                         edit_square
                                     </span>
                                 </a>
-                                <a href="MedicoGer.php?idDel=<?php echo $row->idMed ?>" class="btn btn-danger">
+                                <a href="consultaGer.php?idDel=<?php echo $row->idPac ?>"
+                                class="btn btn-danger" >
+
                                     <span class="material-symbols-outlined">
                                         delete
                                     </span>
                                 </a>
-                            </td>
-                            
-                            <td>
-                                <?php echo $row->nomeMed; ?>
+                                <form action="consultas.php" method=
                             </td>
                             <td>
-                                <?php echo $row->crmMed; ?>
+                                <?php echo $row->pacientePac; ?>
                             </td>
                             <td>
-                                <?php echo $row->emailMed; ?>
+                                <?php echo $row->medicoPac; ?>
                             </td>
                             <td>
-                                <?php echo $row->celularMed; ?>
+                                <?php echo $row->dataPac; ?>
+                            </td>
+                            <td>
+                                <?php echo $row->horaPac; ?>
                             </td>
                         </tr>
                     <?php } ?>
                 </tbody>
+
             </table>
-            <div class="col-12">
-                <a href="MedicoGer.php" class="btn btn-primary">
-                    <span class="material-symbols-outlimed">
-                    </span> Novo Medico
-                </a>
+         </a>
             </div>
         </div>
-    </main>
 
-    <body>
+        </main>
+    </header>
 
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-            crossorigin="anonymous"></script>
-    </body>
-
-</html>
+    //github.com/profAlbertoAyres/MySqlObj
