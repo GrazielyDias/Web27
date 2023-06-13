@@ -5,12 +5,6 @@ class Usuario extends Crud
     protected $tabela = 'Usuario';
     private $idUse;
     private $nomeUse;
-    private $enderecoUse;
-    private $bairroUse;
-    private $cidadeUse;
-    private $estadoUse;
-    private $cepUse;
-    private $nascimentoUse;
     private $emailUse;
     private $celularUse;
     private $usuarioUse;
@@ -166,6 +160,15 @@ class Usuario extends Crud
         if (Conexao::query($sqlAtualizar)) {
             header('location: Usuarios.php');
         }
+
+        if ($_SERVER['REQUEST_METHOD']==='POST') {
+            $usuario = $_POST['usuario'];
+            $senha = $_POST['senha'];
+    
+        }
+   
     }
+
+
 
 }
