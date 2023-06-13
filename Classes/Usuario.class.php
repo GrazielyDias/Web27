@@ -13,7 +13,8 @@ class Usuario extends Crud
     private $nascimentoUse;
     private $emailUse;
     private $celularUse;
-    private $fotoUse;
+    private $usuarioUse;
+    private $senhaUse;
 
 
     /**
@@ -49,114 +50,6 @@ class Usuario extends Crud
     public function setNomeUse($nomeUse): self
     {
         $this->nomeUse = $nomeUse;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEnderecoUse()
-    {
-        return $this->enderecoUse;
-    }
-
-    /**
-     * @param mixed $enderecoUse 
-     * @return self
-     */
-    public function setEnderecoUse($enderecoUse): self
-    {
-        $this->enderecoUse = $enderecoUse;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBairroUse()
-    {
-        return $this->bairroUse;
-    }
-
-    /**
-     * @param mixed $bairroUse 
-     * @return self
-     */
-    public function setBairroUse($bairroUse): self
-    {
-        $this->bairroUse = $bairroUse;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCidadeUse()
-    {
-        return $this->cidadeUse;
-    }
-
-    /**
-     * @param mixed $cidadeUse 
-     * @return self
-     */
-    public function setCidadeUse($cidadeUse): self
-    {
-        $this->cidadeUse = $cidadeUse;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEstadoUse()
-    {
-        return $this->estadoUse;
-    }
-
-    /**
-     * @param mixed $estadoUse 
-     * @return self
-     */
-    public function setEstadoUse($estadoUse): self
-    {
-        $this->estadoUse = $estadoUse;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCepUse()
-    {
-        return $this->cepUse;
-    }
-
-    /**
-     * @param mixed $cepUse 
-     * @return self
-     */
-    public function setCepUse($cepUse): self
-    {
-        $this->cepUse = $cepUse;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNascimentoUse()
-    {
-        return $this->nascimentoUse;
-    }
-
-    /**
-     * @param mixed $nascimentoUse 
-     * @return self
-     */
-    public function setNascimentoUse($nascimentoUse): self
-    {
-        $this->nascimentoUse = $nascimentoUse;
         return $this;
     }
 
@@ -199,18 +92,36 @@ class Usuario extends Crud
     /**
      * @return mixed
      */
-    public function getFotoUse()
+    public function getUsuarioUse()
     {
-        return $this->fotoUse;
+        return $this->usuarioUse;
     }
 
     /**
-     * @param mixed $fotoUse 
+     * @param mixed $usuarioUse 
      * @return self
      */
-    public function setFotoUse($fotoUse): self
+    public function usuarioUse($usuarioUse): self
     {
-        $this->fotoUse = $fotoUse;
+        $this->usuarioUse = $usuarioUse;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSenhaUse()
+    {
+        return $this->senhaUse;
+    }
+
+    /**
+     * @param mixed $senhaUse 
+     * @return self
+     */
+    public function senhaUse($senhaUse): self
+    {
+        $this->senhaUse = $senhaUse;
         return $this;
     }
     /**
@@ -219,18 +130,14 @@ class Usuario extends Crud
     public function inserir()
     {
         $nome = $this->getNomeUse();
-        $endereco = $this->getEnderecoUse();
-        $bairro = $this->getBairroUse();
-        $cidade = $this->getCidadeUse();
-        $estado = $this->getEstadoUse();
-        $cep = $this->getCepUse();
-        $nascimento = $this->getNascimentoUse();
         $email = $this->getEmailUse();
         $celular = $this->getCelularUse();
-        $foto = $this->getFotoUse();
+        $usuario = $this->getUsuarioUse();
+        $senha = $this->getSenhaUse();
 
-        $sqllnserir = "INSERT INTO $this->tabela (nomeUse, enderecoUse, bairroUse,cidadeUse, estadoUse, cepUse,  nascimentoUse, emailUse, celularUse, fotoUse)
-        VALUES ('$nome', '$endereco', '$bairro', '$cidade', '$estado','$cep', '$nascimento', '$email', '$celular', '$foto')";
+
+        $sqllnserir = "INSERT INTO $this->tabela (nomeUse, emailUse, celularUse, usuarioUse, senhaUse)
+        VALUES ('$nome', '$email', '$celular', '$usuario', '$senha')";
         if (Conexao::query($sqllnserir)) {
             header('location: Usuarios.php');
         }
@@ -248,17 +155,13 @@ class Usuario extends Crud
     public function atualizar($campo, $id)
     {
         $nome = $this->getNomeUse();
-        $endereco = $this->getEnderecoUse();
-        $bairro = $this->getBairroUse();
-        $cidade = $this->getCidadeUse();
-        $estado = $this->getEstadoUse();
-        $cep = $this->getCepUse();
-        $nascimento = $this->getNascimentoUse();
+
         $email = $this->getEmailUse();
         $celular = $this->getCelularUse();
-        $foto = $this->getFotoUse();
+        $usuario = $this->getUsuarioUse();
+        $senha = $this->getSenhaUse();
         
-        $sqlAtualizar = "UPDATE $this->tabela SET nomeUse ='$nome', enderecoUse = '$endereco', bairroUse = '$bairro', cidadeUse = '$cidade', estadoUse = '$estado', cepUse = '$cep', nascimentoUse = '$nascimento', emailUse = '$email', celularUse = '$celular', fotoUse = '$foto' where idUse = '$id'";
+        $sqlAtualizar = "UPDATE $this->tabela SET nomeUse ='$nome',  emailUse = '$email', celularUse = '$celular', senhaUse = '$senha', usuarioUse = '$usuario' where idUse = '$id'";
 
         if (Conexao::query($sqlAtualizar)) {
             header('location: Usuarios.php');

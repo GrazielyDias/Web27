@@ -104,7 +104,7 @@ $editPac = filter_input(INPUT_POST, 'consultaCon');
                                     </span>
                                 </a>
                                 <form action="consultas.php" method=
-                            </td>
+                            
                             <td>
                                 <?php echo $row->pacientePac; ?>
                             </td>
@@ -129,4 +129,4 @@ $editPac = filter_input(INPUT_POST, 'consultaCon');
         </main>
     </header>
 
-    //github.com/profAlbertoAyres/MySqlObj
+    
